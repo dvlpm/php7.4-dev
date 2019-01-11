@@ -1,5 +1,7 @@
 FROM php:7.3.1-fpm-alpine3.8
 
+RUN apk --no-cache add git subversion openssh mercurial tini bash patch zip unzip
+
 ENV COMPOSER_VERSION 1.8.0
 
 RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/b107d959a5924af895807021fcef4ffec5a76aa9/web/installer \
@@ -15,8 +17,10 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
  && composer --ansi --version --no-interaction \
  && rm -rf /tmp/* /tmp/.htaccess
 
+COPY entrypoint.sh /entrypoint.sh
+
 WORKDIR /var/www/html
 
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 
 CMD ["composer"]
