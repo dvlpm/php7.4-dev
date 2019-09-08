@@ -1,4 +1,4 @@
-FROM php:7.3.1-fpm-alpine3.8
+FROM php:7.4.0RC1-fpm-alpine
 
 RUN apk --no-cache add git subversion openssh mercurial tini bash patch zip unzip
 
