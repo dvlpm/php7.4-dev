@@ -1,4 +1,4 @@
-FROM php:7.4.0RC1-fpm-alpine
+FROM php:7.4.0RC1-fpm
 
 RUN apk --no-cache add git subversion openssh mercurial tini bash patch zip unzip php-pgsql
 RUN pecl install xdebug-2.7.0beta1 
