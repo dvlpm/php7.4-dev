@@ -1,7 +1,7 @@
 FROM php:7.4.0RC1-fpm
 
 RUN apt-get update \
-    && apt-get install -y libpq-dev zip unzip sqlite3
+    && apt-get install -y libpq-dev zip unzip sqlite3 libsqlite3-dev
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath
 
