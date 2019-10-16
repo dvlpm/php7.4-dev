@@ -1,7 +1,10 @@
-FROM php:7.4.0RC1-fpm
+FROM php:rc-fpm
 
 RUN apt-get update \
     && apt-get install -y libpq-dev zip unzip sqlite3 libsqlite3-dev
+
+RUN pecl install xdebug-2.8.0beta2 \
+	&& docker-php-ext-enable xdebug
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath
 
