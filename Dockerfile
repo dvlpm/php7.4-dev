@@ -1,7 +1,7 @@
 FROM php:rc-fpm
 
 RUN apt-get update \
-    && apt-get install -y libpq-dev zip unzip sqlite3 libsqlite3-dev m4
+    && apt-get install -y libpq-dev zip unzip sqlite3 libsqlite3-dev m4 libpng-dev
 
 RUN pecl install xdebug-2.8.0beta2 \
 	&& docker-php-ext-enable xdebug
