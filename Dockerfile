@@ -6,7 +6,7 @@ RUN apt-get update \
 RUN pecl install xdebug-2.8.0beta2 \
 	&& docker-php-ext-enable xdebug
 
-RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath gd
+RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath gd zlib
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
