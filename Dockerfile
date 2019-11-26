@@ -10,6 +10,7 @@ RUN apt-get update \
     m4 \
     libpng-dev \
     libjpeg-dev \
+    libmagickwand-dev \
     zlib1g-dev \
     libzip-dev \
     libwebp-dev \
@@ -23,13 +24,12 @@ RUN docker-php-ext-enable xdebug
 
 RUN docker-php-ext-configure zip --with-libzip
 RUN docker-php-ext-configure gd \
-    --with-gd \
-    --with-webp-dir \
-    --with-jpeg-dir \
-    --with-png-dir \
-    --with-zlib-dir \
-    --with-xpm-dir \
-    --with-freetype-dir \
+    --with-webp-dir=DIR \
+    --with-jpeg-dir=DIR \
+    --with-png-dir=DIR \
+    --with-zlib-dir=DIR \
+    --with-xpm-dir=DIR \
+    --with-freetype-dir=DIR \
     --enable-gd-native-ttf
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath zip gd
