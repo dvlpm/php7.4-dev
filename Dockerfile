@@ -1,15 +1,37 @@
 FROM php:rc-fpm
 
 RUN apt-get update \
-    && apt-get install -y libpq-dev zip unzip sqlite3 libsqlite3-dev m4 libpng-dev zlib1g-dev libzip-dev zip
+    && apt-get install -y \
+    libpq-dev \
+    zip \
+    unzip \
+    sqlite3 \
+    libsqlite3-dev \
+    m4 \
+    libpng-dev \
+    zlib1g-dev \
+    libzip-dev \
+    libwebp-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev libxpm-dev \
+    libfreetype6-dev \
+    zip
+
+RUN pecl install xdebug-2.8.0beta2
+RUN docker-php-ext-enable xdebug
 
 RUN docker-php-ext-configure zip --with-libzip
-
-RUN pecl install xdebug-2.8.0beta2 \
-	&& docker-php-ext-enable xdebug
+RUN docker-php-ext-configure gd \
+    --with-gd \
+    --with-webp-dir \
+    --with-jpeg-dir \
+    --with-png-dir \
+    --with-zlib-dir \
+    --with-xpm-dir \
+    --with-freetype-dir \
+    --enable-gd-native-ttf
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath zip gd
-RUN docker-php-ext-configure gd --with-jpeg-dir=DIR --with-freetype-dir=DIR --with-webp-dir=DIR
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
