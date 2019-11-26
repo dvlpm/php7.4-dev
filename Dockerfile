@@ -10,7 +10,6 @@ RUN apt-get update \
     m4 \
     libpng-dev \
     libjpeg-dev \
-    jpeg-dev \
     zlib1g-dev \
     libzip-dev \
     libwebp-dev \
