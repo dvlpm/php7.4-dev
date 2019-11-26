@@ -9,6 +9,8 @@ RUN apt-get update \
     libsqlite3-dev \
     m4 \
     libpng-dev \
+    libjpeg-dev \
+    jpeg-dev \
     zlib1g-dev \
     libzip-dev \
     libwebp-dev \
