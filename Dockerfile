@@ -1,4 +1,4 @@
-FROM php:rc-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update \
     && apt-get install -y \
@@ -19,21 +19,14 @@ RUN apt-get update \
     libfreetype6-dev \
     zip
 
-RUN pecl install xdebug-2.8.0beta2
+RUN pecl install xdebug-2.9.1
 RUN docker-php-ext-enable xdebug
-
-RUN docker-php-ext-configure zip --with-libzip
-RUN docker-php-ext-configure gd \
-    --with-webp-dir=DIR \
-    --with-jpeg-dir=DIR \
-    --with-png-dir=DIR \
-    --with-zlib-dir=DIR \
-    --with-xpm-dir=DIR \
-    --with-freetype-dir=DIR \
-    --enable-gd-native-ttf
 
 RUN docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite bcmath zip gd
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+
+# allow www-data to write into mapped volume by faking userId
+RUN usermod -u 1000 www-data
 
 WORKDIR /var/www/html
