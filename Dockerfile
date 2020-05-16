@@ -17,6 +17,7 @@ RUN apt-get update \
     libjpeg62-turbo-dev \
     libpng-dev libxpm-dev \
     libfreetype6-dev \
+    librabbitmq-dev \
     zip \
     && pecl install xdebug-2.9.1 \
     && pecl install protobuf-3.11.4 \
